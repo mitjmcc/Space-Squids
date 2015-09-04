@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\InkPulsar.cs" />
      <Compile Include="Assets\Scripts\Powerup.cs" />
      <Compile Include="Assets\Scripts\SquidDriver.cs" />
+     <Compile Include="Assets\tentacleSegment.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
