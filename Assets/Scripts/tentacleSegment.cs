@@ -8,6 +8,7 @@ public class tentacleSegment : MonoBehaviour {
 	public float speed;
 	public float timer;
 	float intensity;
+	public int player;
 	// Use this for initialization
 	void Start () {
 		timer = 0;
@@ -24,6 +25,10 @@ public class tentacleSegment : MonoBehaviour {
 		timer += speed;
 		if(timer >= (Mathf.PI*2)) timer = 0;
 
-		transform.Rotate (new Vector3 (0,0,-intensity * Mathf.Cos (timer + segment/intensity)));
+		float rotateAngle = -intensity * Mathf.Cos (timer + segment / intensity);
+
+		transform.Rotate (new Vector3 (0,Input.GetAxis("Pitch" + player) * rotateAngle,Input.GetAxis("Vertical" + player) * rotateAngle));
+
+
 	}
 }

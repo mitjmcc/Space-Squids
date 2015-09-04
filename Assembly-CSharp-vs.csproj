@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{873C789F-D435-035C-3F0C-4E4D0FFF09BC}</ProjectGuid>
+	<ProjectGuid>{0A6EE26A-F767-04E1-5332-C5FDAE5851E6}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -49,7 +49,8 @@
      <Compile Include="Assets\Scripts\InkPulsar.cs" />
      <Compile Include="Assets\Scripts\Powerup.cs" />
      <Compile Include="Assets\Scripts\SquidDriver.cs" />
-     <Compile Include="Assets\tentacleSegment.cs" />
+     <Compile Include="Assets\Scripts\checkpointRotater.cs" />
+     <Compile Include="Assets\Scripts\tentacleSegment.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity 5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
