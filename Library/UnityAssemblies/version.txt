@@ -1,0 +1,25 @@
+5.2.0f3:2.1.0.0
+StandaloneWindows
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/Managed/UnityEngine.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/Managed/UnityEditor.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data\Managed/Mono.Cecil.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/Networking/Editor/UnityEditor.Networking.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/Managed/UnityEditor.Graphs.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\androidplayer/UnityEditor.Android.Extensions.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\wp8support/UnityEditor.WP8.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\metrosupport/UnityEditor.Metro.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\TizenPlayer\TizenPlayer/UnityEditor.Tizen.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\stvplayer\STVPlayer/UnityEditor.SamsungTV.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\webglsupport/UnityEditor.WebGL.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\linuxstandalonesupport/UnityEditor.LinuxStandalone.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll
+Q:\program\applications\media\game\Unity 5.2\Editor\Data\PlaybackEngines\macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll
+C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\2015\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll
