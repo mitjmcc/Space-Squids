@@ -1,8 +1,10 @@
 5.2.0f3:2.1.0.0
 StandaloneWindows
 Q:/program/applications/media/game/Unity 5.2/Editor/Data/Managed/UnityEngine.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll
 Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
 Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll
+Q:/program/applications/media/game/Unity 5.2/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll
 Q:/program/applications/media/game/Unity 5.2/Editor/Data/Managed/UnityEditor.dll
 Q:/program/applications/media/game/Unity 5.2/Editor/Data\Managed/Mono.Cecil.dll
 Q:/program/applications/media/game/Unity 5.2/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll

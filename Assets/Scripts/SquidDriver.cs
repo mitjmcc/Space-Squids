@@ -85,7 +85,7 @@ public class SquidDriver : MonoBehaviour {
 
 	void nextCheckpointPointer()
 	{
-		pointer.LookAt(checkpoints[currentCheckpoint].transform.position);
+		//pointer.LookAt(checkpoints[currentCheckpoint].transform.position);
 		//Debug.Log("Current Checkpoint: " + currentCheckpoint);
 	}
 }
