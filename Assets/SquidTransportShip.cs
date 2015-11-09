@@ -7,7 +7,7 @@ public class SquidTransportShip : MonoBehaviour {
     public float length;
     public float speed;
 	void Start () {
-        GetComponent<ParticleSystem>().Emit(100);
+        //GetComponent<ParticleSystem>().Emit(100);
 	}
 	
 	// Update is called once per frame

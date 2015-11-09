@@ -1,10 +1,11 @@
-﻿ 	using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour
 {
 	public GameObject checkpointList;
+	public GameObject powerupList;
 	public int lapCount = 3;
 	public AudioClip ambience;
 	public AudioClip music;
@@ -43,6 +44,9 @@ public class GameController : MonoBehaviour
 
 	AudioController audioLogic;
 	SquidController[] squids;
+	Camera[] cameras;
+	Image[] crossHairPlanes;
+	Image[] crossHairs;
 
 	void Awake()
 	{
@@ -82,13 +86,11 @@ public class GameController : MonoBehaviour
 		redLose.CrossFadeAlpha(0F, 0F, true);
 		blueLose.CrossFadeAlpha(0F, 0F, true);
 
-		// Get the audio controller
-
 		audioLogic = transform.Find("AudioLogic").gameObject.GetComponent<AudioController>();
-
-		// Get the squids
-
 		squids = transform.Find("Spawn").gameObject.GetComponentsInChildren<SquidController>();
+		cameras = transform.Find("Spawn").gameObject.GetComponentsInChildren<Camera>();
+		crossHairPlanes = transform.Find("UI/CrosshairPlanes").gameObject.GetComponentsInChildren<Image>();
+		crossHairs = transform.Find("UI/Crosshairs").gameObject.GetComponentsInChildren<Image>();
 	}
 
 	void Start()
@@ -127,6 +129,28 @@ public class GameController : MonoBehaviour
 		{
 			circleWipe.fadeOut();
 			hasWiped = true;
+		}
+
+		// Move the crosshairs around
+
+		float lerpFactor = 0.25F;
+
+		for (int i = 0; i < 2; i++)
+		{
+			RectTransform rect = crossHairs[i].rectTransform;
+			RectTransform planeRect = crossHairPlanes[i].rectTransform;
+			bool aimed = squids[i].getPowerupAimed();
+
+			Vector3 targPos = new Vector3(Screen.width*0.5F, Screen.height*(0.75F - i*0.5F), 0);
+			if (aimed) targPos = cameras[i].WorldToScreenPoint(squids[1-i].transform.position);
+			rect.position = Vector3.Lerp(rect.position, targPos, lerpFactor);
+
+			float totalScale = ((squids[i].getPowerupPhase() == 2 && squids[i].getPowerup() == 2) ? 1 : 0);
+			float scale = (aimed ? 1 : 0.5F) * totalScale;
+			if (scale == 1)
+				scale *= 1+(Mathf.Sin(Time.time*15)*0.075F);
+			rect.localScale = Vector3.Lerp(rect.localScale, new Vector3(scale,scale,1), lerpFactor);
+			planeRect.localScale = Vector3.Lerp(planeRect.localScale, new Vector3(totalScale,totalScale,1), lerpFactor);
 		}
 	}
 
@@ -199,6 +223,21 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	public int getLeader()
+	{
+		if (curProgress[0] == curProgress[1])
+			return -1;
+		else if (curProgress[0] > curProgress[1])
+			return 0;
+		else
+			return 1;
+	}
+
+	public Vector3 getCheckpointPos(int index)
+	{
+		return checkpointLogic.transform.GetChild(index).position;
+	}
+
 	// When a squid wins, all the checkpoint logic is turned off,
 	// the lap panels are faded away, the winner screen is brought up
 	// for the winner, the losing screen is brought up for the loser,
@@ -207,6 +246,7 @@ public class GameController : MonoBehaviour
 	void win(int index)
 	{
 		checkpointLogic.SetActive(false);
+		powerupList.SetActive(false);
 
 		float fadeTime = 0.125F;
 		redLapPanel.CrossFadeAlpha(0F, fadeTime, false);
@@ -230,6 +270,7 @@ public class GameController : MonoBehaviour
 		else
 			redLose.CrossFadeAlpha(0.8F, fadeTime, false);
 		squids[1-index].setControl(0);
+		squids[1-index].setPowerupAmount(0);
 
 		audioLogic.playEndMusic();
 	}

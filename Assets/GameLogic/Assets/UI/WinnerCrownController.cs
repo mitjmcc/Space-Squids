@@ -50,7 +50,7 @@ public class WinnerCrownController : MonoBehaviour
 			}
 
 			// Fade the crown to its new color
-			
+
 			float fadeTime = 0.1F;
 			if (index == -1)
 				crownImage.CrossFadeColor(new Color(0.5F, 0.5F, 0.5F, 1F), fadeTime, false, true);

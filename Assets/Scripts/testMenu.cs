@@ -30,6 +30,8 @@ public class testMenu : MonoBehaviour {
         levelSelect.localScale = Vector3.zero;
     }
 
+    public Transform fadingMenu;
+
     // Update is called once per frame
     void Update ()
     {
@@ -72,8 +74,17 @@ public class testMenu : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.Space)) //go to level
             {
-                if(currrentLevelSelected == 1 || currrentLevelSelected == 2)
-                Application.LoadLevel(currrentLevelSelected+1);
+                if(currrentLevelSelected == 1)
+                {
+                    //Application.LoadLevel(currrentLevelSelected+1);
+                    fadingMenu.GetComponent<CircleWipe>().setLevelToLoad("Double Figure 8");
+                }
+                else if(currrentLevelSelected == 2)
+                {
+                    fadingMenu.GetComponent<CircleWipe>().setLevelToLoad("Squid Rig");
+                }
+                fadingMenu.GetComponent<CircleWipe>().fadeOut();
+
             }
         }
 

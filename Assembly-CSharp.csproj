@@ -49,11 +49,18 @@
      <Compile Include="Assets\GameLogic\Assets\Audio\AudioController.cs" />
      <Compile Include="Assets\GameLogic\Assets\Checkpoint\CheckpointController.cs" />
      <Compile Include="Assets\GameLogic\Assets\GameController.cs" />
+     <Compile Include="Assets\GameLogic\Assets\Player\Arrow\ArrowController.cs" />
+     <Compile Include="Assets\GameLogic\Assets\Player\Rocket\RocketController.cs" />
      <Compile Include="Assets\GameLogic\Assets\Player\SquidController.cs" />
+     <Compile Include="Assets\GameLogic\Assets\Powerup\PowerupController.cs" />
+     <Compile Include="Assets\GameLogic\Assets\Powerup\PowerupRotate.cs" />
+     <Compile Include="Assets\GameLogic\Assets\Powerup\PowerupSoundController.cs" />
      <Compile Include="Assets\GameLogic\Assets\Stoplight\StoplightController.cs" />
      <Compile Include="Assets\GameLogic\Assets\UI\CircleWipe.cs" />
+     <Compile Include="Assets\GameLogic\Assets\UI\PowerupPanelController.cs" />
      <Compile Include="Assets\GameLogic\Assets\UI\WinnerCrownController.cs" />
      <Compile Include="Assets\OffOn.cs" />
+     <Compile Include="Assets\Orbiter.cs" />
      <Compile Include="Assets\Scripts\CheckpointSystem.cs" />
      <Compile Include="Assets\Scripts\InkPulsar.cs" />
      <Compile Include="Assets\Scripts\JohnCenaMovement.cs" />
@@ -66,6 +73,8 @@
      <Compile Include="Assets\Scripts\testMenu.cs" />
      <Compile Include="Assets\ShipLauncher.cs" />
      <Compile Include="Assets\SquidTransportShip.cs" />
+     <Compile Include="Assets\TextureShifter.cs" />
+     <Compile Include="Assets\squidMissile.cs" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
@@ -133,6 +142,7 @@
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\Shaders\RimLight.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+     <None Include="Assets\GameLogic\Assets\Shaders\Glass.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
      <None Include="Assets\GameLogic\Assets\Shaders\RimLight.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
