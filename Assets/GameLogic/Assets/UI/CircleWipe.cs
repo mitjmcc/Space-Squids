@@ -4,23 +4,18 @@ using System.Collections;
 
 public class CircleWipe : MonoBehaviour
 {
+	public int sceneToLoad;
+
 	Image wipe;
 	int phase = 0;
 	float phaseTime = 0;
 	float phaseBlitTime = 0.5F;
 	float phaseFadeTime = 1.5F;
 
-	GameController controller;
-	public string levelToLoad;
-
 	void Awake()
 	{
 		wipe = GetComponent<Image>();
 		wipe.enabled = true;
-
-		controller = transform.parent.gameObject.GetComponent<GameController>();
-		if (controller != null)
-			levelToLoad = controller.sceneToReturnTo;
 	}
 
 	void Update()
@@ -51,8 +46,10 @@ public class CircleWipe : MonoBehaviour
 
 			if (phaseTime <= 0)
 			{
-				if (Application.CanStreamedLevelBeLoaded(levelToLoad))
-					Application.LoadLevel(levelToLoad);
+				if (sceneToLoad == -1)
+					Application.Quit();
+				else if (Application.CanStreamedLevelBeLoaded(sceneToLoad))
+					Application.LoadLevel(sceneToLoad);
 				else
 					Application.LoadLevel(Application.loadedLevel);
 			}
@@ -65,8 +62,8 @@ public class CircleWipe : MonoBehaviour
 		wipe.enabled = true;
 	}
 
-	public void setLevelToLoad(string level)
+	public void setSceneToLoad(int scene)
 	{
-		levelToLoad = level;
+		sceneToLoad = scene;
 	}
 }

@@ -9,7 +9,6 @@ public class GameController : MonoBehaviour
 	public int lapCount = 3;
 	public AudioClip ambience;
 	public AudioClip music;
-	public string sceneToReturnTo;
 
 	int[] curLap;
 	int[] curCheckpoint;
@@ -109,6 +108,13 @@ public class GameController : MonoBehaviour
 	
 	void Update()
 	{
+		if (Input.GetKeyDown(KeyCode.Escape) && !hasWiped)
+		{
+			circleWipe.setSceneToLoad(0);
+			circleWipe.fadeOut();
+			hasWiped = true;
+		}
+
 		// Set the current lap text to read the current lap
 
 		redCurrentLapText.text = "" + Mathf.Clamp(curLap[0], 1, lapCount);
@@ -127,6 +133,7 @@ public class GameController : MonoBehaviour
 
 		if ((winTime != -1) && (Time.time > winTime+winDelay) && (!hasWiped))
 		{
+			circleWipe.setSceneToLoad(0);
 			circleWipe.fadeOut();
 			hasWiped = true;
 		}
