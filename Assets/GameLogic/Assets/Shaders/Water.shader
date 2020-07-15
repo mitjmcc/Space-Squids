@@ -1,4 +1,6 @@
-﻿// This shader is a derivative of the custom rim light shader
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// This shader is a derivative of the custom rim light shader
 // which refracts what's on the screen behind it and also
 // perturbs slightly to create the illusion of waves
 
@@ -74,7 +76,7 @@ Shader "Custom/Water"
 				s.y += sin((s.y+s.z)*0.01*_WaveSize*1.000+t)*a;
 				s.z += sin((s.z+s.x)*0.01*_WaveSize*1.250+t)*a;
 				
-				o.pos = mul(UNITY_MATRIX_MVP,s);
+				o.pos = UnityObjectToClipPos(s);
 				o.uv = TRANSFORM_TEX(v.texcoord,_BumpMap);
 				o.screenPos = ComputeGrabScreenPos(o.pos);
 				o.vertColor = v.color;
