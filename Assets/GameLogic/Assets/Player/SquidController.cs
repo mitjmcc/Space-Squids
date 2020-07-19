@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using PathCreation;
 
 public class SquidController : MonoBehaviour
 {
@@ -64,10 +65,14 @@ public class SquidController : MonoBehaviour
 	Quaternion camTargRot = Quaternion.Euler(0,270,0);
 	float camDrag = 1.1F;
 
+    PathCreator trackSpline;
+    float progress;
+
 	void Awake()
 	{
 		body = GetComponent<Rigidbody>();
 		cam = transform.Find("Camera").gameObject.GetComponent<Camera>();
+        cam.transform.SetParent(null); // unparent camera from prefab to allow moving along the spline
 		model = transform.Find("Model");
 		modelRot = model.localRotation;
 		armature = transform.Find("Model/Armature/spine").gameObject.GetComponentsInChildren<Transform>();
@@ -86,6 +91,8 @@ public class SquidController : MonoBehaviour
 		arrow = transform.Find("Arrow").gameObject.GetComponent<ArrowController>();
 		game = transform.parent.parent.gameObject.GetComponent<GameController>();
 		otherSquid = transform.parent.GetChild(1-playerIndex).gameObject;
+        trackSpline = GameObject.FindObjectOfType<PathCreator>();
+        progress = -Vector3.Distance(trackSpline.path.GetPointAtDistance(0.0F), transform.position);
 	}
 
 	void Start()
@@ -121,11 +128,15 @@ public class SquidController : MonoBehaviour
 		var rollTarg = Mathf.DeltaAngle(turn,turnTarg)*rollStrength;
 		roll += (rollTarg-roll)*rollDrag;
 
+        // Keeping track of how far along the spline we've gone and get the position behind the player
+
+        progress = trackSpline.path.GetClosestDistanceAlongPath(transform.position + camTargPos);
+
 		// Add force in the direction the ship is facing, and expand the FOV
 		// of the camera with the resultant speed (makes things look "faster")
 		// The FOV also has a target and a drag to smooth it out
 
-		var facingVec = body.rotation*Quaternion.Euler(0,turn,0)*-Vector3.right;
+		var facingVec = trackSpline.path.GetRotationAtDistance(progress)*Quaternion.Euler(0,turn,0)*Vector3.forward;
 		moveBoost += (1-moveBoost)*moveBoostDrag;
 		moveBoostRoll = (moveBoost-1)*(moveBoost-1)*-90;
 		body.AddForce(facingVec*len*moveForce*moveBoost);
@@ -142,7 +153,7 @@ public class SquidController : MonoBehaviour
 		engineSound.pitch = 1+body.velocity.magnitude*0.4F;
 
 		// Handle powerups
-		
+
 		switch (powerupPhase)
 		{
 		case 0:
@@ -187,7 +198,7 @@ public class SquidController : MonoBehaviour
 			}
 			break;
 		}
-		
+
 		Vector3 p1 = cam.WorldToScreenPoint(otherSquid.transform.position);
 		Vector3 p2 = new Vector3(Screen.width*0.5F, Screen.height*(0.75F - playerIndex*0.5F),0);
 		powerupAimed = (Mathf.Abs(p1.x-p2.x) < 300 && Mathf.Abs(p1.y-p2.y) < 150 && p1.z > 0);
@@ -359,18 +370,22 @@ public class SquidController : MonoBehaviour
 
 		// Slowly center the camera over time
 
-		camPos = Vector3.Lerp(camPos,camTargPos,camDrag*Time.deltaTime);
+		camPos = Vector3.Lerp(camPos,trackSpline.path.GetPointAtDistance(progress)/* transform.position + camTargPos */,camDrag*Time.deltaTime);
 		camRot = Quaternion.Slerp(camRot,camTargRot,camDrag*Time.deltaTime);
 		cam.transform.localPosition = camPos + new Vector3(rumble*2F,-rumble*0.25F,0);
 		Vector3 jitter = Random.insideUnitSphere;
 		jitter.Scale(new Vector3(rumble*0.075F,rumble*0.075F,rumble*0.075F));
 		cam.transform.localPosition += jitter;
-		cam.transform.localRotation = camRot;
+		// cam.transform.localRotation = camRot;
+
+        // cam.transform.forward = Vector3.Cross(transform.forward, trackSpline.path.GetNormal(progress));
+        cam.transform.localRotation = trackSpline.path.GetRotationAtDistance(progress);
+        cam.transform.LookAt(transform.position);
 
 		// Rotate the armature
 
 		armatureBase.rotation = Quaternion.identity;
-		
+
 		armature[0].rotation = model.rotation * Quaternion.Euler(270,180,0);
 		for (int i = 1; i < armature.Length; i++)
 		{
